@@ -1,0 +1,84 @@
+import React, { useState } from "react";
+
+function App() {
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (form.name === "") {
+      setError("Name cannot be empty");
+      return;
+    }
+
+    if (!form.email.includes("@")) {
+      setError("Invalid Email");
+      return;
+    }
+
+    if (form.password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
+    setError("");
+    setSuccess("Registration Successful");
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Registration Form</h1>
+
+      <form onSubmit={handleSubmit}>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter Name"
+          onChange={handleChange}
+        />
+        <br /><br />
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter Email"
+          onChange={handleChange}
+        />
+        <br /><br />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Password"
+          onChange={handleChange}
+        />
+        <br /><br />
+
+        <button type="submit">Register</button>
+
+      </form>
+
+      <p style={{ color: "red" }}>{error}</p>
+      <p style={{ color: "green" }}>{success}</p>
+
+    </div>
+  );
+}
+
+export default App;
