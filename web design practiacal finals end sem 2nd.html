@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Factorial Calculator</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right,#4facfe,#00f2fe);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        margin:0;
+    }
+
+    .container{
+        background:white;
+        padding:30px;
+        border-radius:10px;
+        box-shadow:0 0 15px rgba(0,0,0,0.2);
+        text-align:center;
+        width:320px;
+    }
+
+    h2{
+        color:#333;
+    }
+
+    input{
+        width:90%;
+        padding:10px;
+        font-size:16px;
+        margin:10px 0;
+    }
+
+    button{
+        padding:10px 20px;
+        font-size:16px;
+        background:#007BFF;
+        color:white;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#0056b3;
+    }
+
+    #result{
+        margin-top:20px;
+        font-size:20px;
+        font-weight:bold;
+        color:green;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Factorial Calculator</h2>
+
+    <input type="number" id="number" placeholder="Enter a number">
+
+    <br>
+
+    <button onclick="calculateFactorial()">Calculate</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+
+function calculateFactorial(){
+
+    let num = parseInt(document.getElementById("number").value);
+
+    if(isNaN(num) || num < 0){
+        document.getElementById("result").innerHTML =
+        "Please enter a valid positive number.";
+        return;
+    }
+
+    let factorial = 1;
+
+    for(let i = 1; i <= num; i++){
+        factorial = factorial * i;
+    }
+
+    document.getElementById("result").innerHTML =
+    "Factorial of " + num + " = " + factorial;
+}
+
+</script>
+
+</body>
+</html>
